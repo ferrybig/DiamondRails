@@ -8,8 +8,8 @@
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>1.7.9-R0.2-SNAPSHOT</version>
+            <artifactId>bukkit</artifactId>
+            <version>1.7.9-R0.2</version>
         </dependency>
     </dependencies>
     <properties>
