@@ -71,7 +71,7 @@ public class DiamondRails extends JavaPlugin implements Listener {
             Block target = getNextLocation(search, loc);
             if (target != null) {
                 target = target.getRelative(0, -SEARCH_DEPTH, 0);
-                Location newLoc = target.getLocation().add(0.5, 0.5, 0.5);
+                Location newLoc = target.getLocation().add(0.5, 0.7, 0.5);
                 loc = minecart.getLocation();
                 Vector speed = newLoc.toVector().subtract(loc.toVector());
                 Vector oldSpeed = minecart.getVelocity();
