@@ -18,12 +18,12 @@ public class DiamondRails extends JavaPlugin implements Listener {
     private static final BlockFace[] SEARCH_LOCATIONS;
 
     static {
-        SEARCH_LOCATIONS = new BlockFace[8 * 6];
+        SEARCH_LOCATIONS = new BlockFace[8 * 7];
         int i = 0;
         for (int x = -1; x < 2; x++) {
             for (int z = -1; z < 2; z++) {
                 if (x != 0 || z != 0) {
-                    for (int y = -2; y < 4; y++) {
+                    for (int y = -3; y < 4; y++) {
                         SEARCH_LOCATIONS[i++] = new BlockFace(x, y, z);
                     }
                 }
@@ -68,7 +68,7 @@ public class DiamondRails extends JavaPlugin implements Listener {
                 return;
             }
             loc = loc.add(minecart.getVelocity().multiply(4));
-            loc.add(0,2,0);
+            loc.add(0,0.1,0);
             Block target = getNextLocation(search, loc);
             if (target != null) {
                 target = target.getRelative(0, -SEARCH_DEPTH, 0);
