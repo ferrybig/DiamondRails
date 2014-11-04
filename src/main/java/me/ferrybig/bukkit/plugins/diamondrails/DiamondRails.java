@@ -13,7 +13,7 @@ import org.bukkit.util.Vector;
 
 public class DiamondRails extends JavaPlugin implements Listener {
 
-    private static final int SEARCH_DEPTH = -3;
+    private int searchDepth = -3;
     private static final Material TRACK_MATERIAL = Material.DIAMOND_BLOCK;
     private static final BlockFace[] SEARCH_LOCATIONS;
 
@@ -48,6 +48,9 @@ public class DiamondRails extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         this.getServer().getPluginManager().registerEvents(this, this);
+        searchDepth = this.getConfig().getInt("searchDepth", searchDepth);
+        this.getConfig().set("searchDepth", searchDepth);
+        this.saveConfig();
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -62,7 +65,7 @@ public class DiamondRails extends JavaPlugin implements Listener {
                     || type == Material.POWERED_RAIL) {
                 return;
             }
-            loc.add(0, SEARCH_DEPTH, 0);
+            loc.add(0, searchDepth, 0);
             Block search = getActualBlock(loc.getBlock(), loc);
             if (search == null) {
                 return;
@@ -71,7 +74,7 @@ public class DiamondRails extends JavaPlugin implements Listener {
             loc.add(0,0.1,0);
             Block target = getNextLocation(search, loc);
             if (target != null) {
-                target = target.getRelative(0, -SEARCH_DEPTH, 0);
+                target = target.getRelative(0, -searchDepth, 0);
                 Location newLoc = target.getLocation().add(0.5, 0.7, 0.5);
                 loc = minecart.getLocation();
                 Vector speed = newLoc.toVector().subtract(loc.toVector());
