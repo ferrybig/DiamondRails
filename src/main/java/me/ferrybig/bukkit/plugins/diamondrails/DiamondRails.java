@@ -14,7 +14,7 @@ import org.bukkit.util.Vector;
 public class DiamondRails extends JavaPlugin implements Listener {
 
     private int searchDepth = -3;
-    private static final Material TRACK_MATERIAL = Material.DIAMOND_BLOCK;
+    private Material trackMaterial = Material.DIAMOND_BLOCK;
     private static final BlockFace[] SEARCH_LOCATIONS;
 
     static {
@@ -49,7 +49,12 @@ public class DiamondRails extends JavaPlugin implements Listener {
     public void onEnable() {
         this.getServer().getPluginManager().registerEvents(this, this);
         searchDepth = this.getConfig().getInt("searchDepth", searchDepth);
+        trackMaterial = Material.getMaterial(this.getConfig().getString("trackMaterial", trackMaterial.name()));
+        if(trackMaterial == null) {
+            trackMaterial = Material.DIAMOND_BLOCK;
+        }
         this.getConfig().set("searchDepth", searchDepth);
+        this.getConfig().set("trackMaterial", trackMaterial.name());
         this.saveConfig();
     }
 
@@ -97,7 +102,7 @@ public class DiamondRails extends JavaPlugin implements Listener {
         Location cache = new Location(calculatedHeading.getWorld(), 0, 0, 0);
         for (BlockFace f : SEARCH_LOCATIONS) {
             scannedBlock = f.getRelative(scanBlock);
-            if (scannedBlock.getType() == TRACK_MATERIAL) {
+            if (scannedBlock.getType() == trackMaterial) {
                 cache.setX(scannedBlock.getX() + 0.5);
                 cache.setY(scannedBlock.getY() + 0.5);
                 cache.setZ(scannedBlock.getZ() + 0.5);
@@ -117,7 +122,7 @@ public class DiamondRails extends JavaPlugin implements Listener {
         Location cache = new Location(calculatedHeading.getWorld(), 0, 0, 0);
         for (BlockFace f : BLOCK_LOCATIONS) {
             scannedBlock = f.getRelative(scanBlock);
-            if (scannedBlock.getType() == TRACK_MATERIAL) {
+            if (scannedBlock.getType() == trackMaterial) {
                 cache.setX(scannedBlock.getX() + 0.5);
                 cache.setY(scannedBlock.getY() + 0.5);
                 cache.setZ(scannedBlock.getZ() + 0.5);
