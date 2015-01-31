@@ -1,6 +1,8 @@
 package me.ferrybig.bukkit.plugins.diamondrails;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -52,12 +54,26 @@ public class DiamondRails extends JavaPlugin implements Listener {
         this.getServer().getPluginManager().registerEvents(this, this);
         searchDepth = this.getConfig().getInt("searchDepth", searchDepth);
         trackMaterial = new HashSet<>();
-        trackMaterial.add(Material.getMaterial(this.getConfig().getString("trackMaterial", null)));
+        Object cValue = this.getConfig().get("trackMaterial", null);
+        if(cValue instanceof String ) {
+            trackMaterial.add(Material.getMaterial(cValue.toString()));
+        } else if(cValue instanceof List ) {
+            List<?> list = (List<?>) cValue;
+            for(Object o : list) {
+                if(o instanceof String) {
+                    trackMaterial.add(Material.getMaterial(o.toString()));
+                }
+            }
+        }
         if(trackMaterial.isEmpty()) {
             trackMaterial.add(Material.DIAMOND_BLOCK);
         }
         this.getConfig().set("searchDepth", searchDepth);
-        this.getConfig().set("trackMaterial", trackMaterial.iterator().next().name());
+        List<String> data = new ArrayList<>();
+        for(Material mat : trackMaterial) {
+            data.add(mat.name());
+        }
+        this.getConfig().set("trackMaterial", data);
         this.saveConfig();
     }
 
