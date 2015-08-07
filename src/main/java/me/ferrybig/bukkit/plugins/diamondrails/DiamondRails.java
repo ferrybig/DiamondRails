@@ -66,6 +66,7 @@ public class DiamondRails extends JavaPlugin implements Listener {
             }
         }
         if(trackMaterial.isEmpty()) {
+            this.getLogger().warning("No materials found, adding DIAMOND_BLOCK to the block list");
             trackMaterial.add(Material.DIAMOND_BLOCK);
         }
         this.getConfig().set("searchDepth", searchDepth);
