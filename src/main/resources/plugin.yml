@@ -1,6 +1,6 @@
 main: me.ferrybig.bukkit.plugins.diamondrails.DiamondRails
 name: DiamondRails
-version: 1.0.0
+version: ${project.version}
 author: ferrybig
 description: |
    This plugin allows mincarts that ride on a hidden track, 
