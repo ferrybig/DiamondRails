@@ -1,52 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>me.ferrybig.javacoding.minecraft.bukkit</groupId>
-    <artifactId>DiamondRails</artifactId>
-    <version>1.1.0</version>
-    <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8.7-R0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-    </properties>
-	<distributionManagement>
-		<repository>
-			<id>ferrybig-repository</id>
-			<url>scpexe://ferrybig.me/repository</url>
-		</repository>
-	</distributionManagement>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>me.ferrybig.javacoding.minecraft.bukkit</groupId>
+	<artifactId>diamondrails</artifactId>
+	<version>1.1.0</version>
+	<packaging>jar</packaging>
+	<parent>
+		<groupId>me.ferrybig.javacoding.minecraft.bukkit</groupId>
+		<artifactId>bukkitplugin</artifactId>
+		<version>1.0</version>
+	</parent>
+	<scm>
+		<url>https://github.com/ferrybig/DiamondRails</url>
+		<connection>scm:git:git://github.com/ferrybig/DiamondRails</connection>
+		<developerConnection>scm:git:git@github.com:ferrybig/DiamondRails</developerConnection>
+	</scm>
 	<repositories>
 		<repository>
-			<id>spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-		</repository>
-        <repository>
 			<id>ferrybig-repository</id>
 			<url>http://ferrybig.me/repository/</url>
 		</repository>
 	</repositories>
-	<build>
-		<extensions>
-			<!-- Enabling the use of SSH -->
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh-external</artifactId>
-				<version>1.0-beta-6</version>
-			</extension>
-		</extensions>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-	</build>
 </project>
